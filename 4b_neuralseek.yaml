@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: neuralseek-app
+  namespace: neuralseek
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: neuralseek-app
+  template:
+    metadata:
+      labels:
+        app: neuralseek-app
+    spec:
+      volumes:
+      - name: neuralseek-config-vol
+        configMap:
+          name: neuralseek-config
+      imagePullSecrets:
+      - name: docker-cred-secret
+      containers:
+      - name: app
+        image: <<repo>>/neuralseek/neuralseek-app:latest
+        env:
+        - name: DBHOST
+          value: neuralseek-db-service
+        - name: HOST
+          value: <<http://your_External_DNS_URL>>
+        securityContext:
+          runAsNonRoot: true
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop: ["ALL"]
+          seccompProfile:
+            type: "RuntimeDefault"
+        ports:
+        - containerPort: 8080

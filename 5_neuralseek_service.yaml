@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: neuralseek-app-service
+  namespace: neuralseek
+spec:
+  selector:
+    app: neuralseek-app
+  ports:
+  - protocol: TCP
+    name: web
+    port: 80
+    targetPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: neuralseek-db-service
+  namespace: neuralseek
+spec:
+  selector:
+    app: neuralseek-db
+  ports:
+  - protocol: TCP
+    name: redis
+    port: 6373
+    targetPort: 6373
+  - protocol: TCP
+    name: neo4j
+    port: 7687
+    targetPort: 7687

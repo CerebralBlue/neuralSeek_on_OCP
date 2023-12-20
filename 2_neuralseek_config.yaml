@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: neuralseek-config
+  namespace: neuralseek
+data:
+  app-service-name: neuralseek-app-service
+  db-service-name: neuralseek-db-service

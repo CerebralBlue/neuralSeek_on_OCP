@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: neuralseek-db
+  namespace: neuralseek
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: neuralseek-db
+  template:
+    metadata:
+      labels:
+        app: neuralseek-db
+    spec:
+      volumes:
+      - name: neuralseek-db-vol
+        persistentVolumeClaim:
+          claimName: neuralseek-db-pvc
+      - name: neuralseek-config-vol
+        configMap:
+          name: neuralseek-config
+      imagePullSecrets:
+      - name: docker-cred-secret
+      containers:
+      - name: db
+        image: <<repo>>/neuralseek/neuralseek-db:latest
+        securityContext:
+          runAsNonRoot: true
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop: ["ALL"]
+          seccompProfile:
+            type: "RuntimeDefault"
+        ports:
+        - containerPort: 7687
+        - containerPort: 6373
+        volumeMounts:
+        - mountPath: "/var/lib/neo4j/data"
+          name: neuralseek-db-vol
