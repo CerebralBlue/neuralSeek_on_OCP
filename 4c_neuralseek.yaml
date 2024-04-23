@@ -21,7 +21,7 @@ spec:
       - name: docker-cred-secret
       containers:
       - name: mod
-        image: <<repo>>/neuralseek/neuralseek-mod:latest
+        image: <<repo>>/cerebralblue/cerebralblue:modcontainer
         securityContext:
           runAsNonRoot: true
           allowPrivilegeEscalation: false

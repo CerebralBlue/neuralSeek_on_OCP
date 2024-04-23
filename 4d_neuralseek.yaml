@@ -24,7 +24,7 @@ spec:
       - name: docker-cred-secret
       containers:
       - name: app
-        image: <<repo>>/neuralseek/neuralseek-app:latest
+        image: <<repo>>/cerebralblue/cerebralblue:appcontainer
         env:
         - name: DBHOST
           value: neuralseek-db-service

@@ -24,7 +24,7 @@ spec:
       - name: docker-cred-secret
       containers:
       - name: pg
-        image: <<repo>>/neuralseek/neuralseek-pg:latest
+        image: <<repo>>/cerebralblue/cerebralblue:pgcontainer
         securityContext:
           runAsNonRoot: true
           allowPrivilegeEscalation: false

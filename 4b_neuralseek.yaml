@@ -24,7 +24,7 @@ spec:
       - name: docker-cred-secret
       containers:
       - name: db
-        image: <<repo>>/neuralseek/neuralseek-db:latest
+        image: <<repo>>/cerebralblue/cerebralblue:dbcontainer
         securityContext:
           runAsNonRoot: true
           allowPrivilegeEscalation: false
