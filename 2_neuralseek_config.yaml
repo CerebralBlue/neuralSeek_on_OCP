@@ -6,3 +6,5 @@ metadata:
 data:
   app-service-name: neuralseek-app-service
   db-service-name: neuralseek-db-service
+  pg-service-name: neuralseek-pg-service
+  mod-service-name: neuralseek-mod-service

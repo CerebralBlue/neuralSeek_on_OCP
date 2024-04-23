@@ -1,0 +1,14 @@
+kind: Route
+apiVersion: v1
+metadata:
+  name: neuralseek-app-route
+  namespace: neuralseek
+spec:
+  path: /
+  to:
+    kind: Service
+    name: neuralseek-app-service
+    weight: 100
+  port:
+    targetPort: web
+  wildcardPolicy: None

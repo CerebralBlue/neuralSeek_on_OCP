@@ -29,3 +29,55 @@ spec:
     name: neo4j
     port: 7687
     targetPort: 7687
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: neuralseek-pg-service
+  namespace: neuralseek
+spec:
+  selector:
+    app: neuralseek-pg
+  ports:
+  - protocol: TCP
+    name: pg
+    port: 5432
+    targetPort: 5432
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: neuralseek-mod-service
+  namespace: neuralseek
+spec:
+  selector:
+    app: neuralseek-mod
+  ports:
+  - protocol: TCP
+    name: grammar
+    port: 6424
+    targetPort: 6424
+  - protocol: TCP
+    name: vectort
+    port: 6425
+    targetPort: 6425
+  - protocol: TCP
+    name: vectori
+    port: 6426
+    targetPort: 6426
+  - protocol: TCP
+    name: guardrail
+    port: 6427
+    targetPort: 6427
+  - protocol: TCP
+    name: faq
+    port: 6428
+    targetPort: 6428
+  - protocol: TCP
+    name: tbla
+    port: 6446
+    targetPort: 6446
+  - protocol: TCP
+    name: tblb
+    port: 6447
+    targetPort: 6447
