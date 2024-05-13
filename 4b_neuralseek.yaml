@@ -36,5 +36,5 @@ spec:
         - containerPort: 7687
         - containerPort: 6373
         volumeMounts:
-        - mountPath: /var/lib/neo4j/data:z
+        - mountPath: /var/lib/neo4j/data
           name: neuralseek-db-vol

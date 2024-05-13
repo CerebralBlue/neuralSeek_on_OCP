@@ -44,5 +44,5 @@ spec:
         ports:
         - containerPort: 8080
         volumeMounts:
-        - mountPath: /neuralseek/notes:z
+        - mountPath: /neuralseek/notes
           name: neuralseek-app-vol

@@ -35,5 +35,6 @@ spec:
         ports:
         - containerPort: 5432
         volumeMounts:
-        - mountPath: /pg/data:z
+        - mountPath: /pg
+          subPath: data
           name: neuralseek-pg-vol
