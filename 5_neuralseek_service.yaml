@@ -81,3 +81,11 @@ spec:
     name: tblb
     port: 6447
     targetPort: 6447
+  - protocol: TCP
+    name: ocr
+    port: 6121
+    targetPort: 6121
+  - protocol: TCP
+    name: sandbox
+    port: 3001
+    targetPort: 3001
