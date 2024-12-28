@@ -37,3 +37,4 @@ spec:
         - containerPort: 6428
         - containerPort: 6446
         - containerPort: 6447
+        - containerPort: 3001
