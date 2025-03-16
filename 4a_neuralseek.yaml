@@ -1,30 +1,39 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: neuralseek-pg
+  name: neuralseek-app
   namespace: neuralseek
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: neuralseek-pg
+      app: neuralseek-app
   template:
     metadata:
       labels:
-        app: neuralseek-pg
+        app: neuralseek-app
     spec:
       volumes:
-      - name: neuralseek-pg-vol
+      - name: neuralseek-app-vol
         persistentVolumeClaim:
-          claimName: neuralseek-pg-pvc
+          claimName: neuralseek-app-pvc
       - name: neuralseek-config-vol
         configMap:
           name: neuralseek-config
       imagePullSecrets:
-      - name: docker-cred-secret
+      - name: docker
       containers:
-      - name: pg
-        image: <<repo>>/cerebralblue/cerebralblue:pgcontainer
+      - name: app
+        image: docker.io/cerebralblue/cerebralblue:appcontainer
+        env:
+        - name: DBHOST
+          value: neuralseek-db-service
+        - name: PGHOST
+          value: neuralseek-pg-service
+        - name: MODHOST
+          value: neuralseek-mod-service
+        - name: HOST
+          value: <<http://your_External_DNS_URL>>
         securityContext:
           runAsNonRoot: true
           allowPrivilegeEscalation: false
@@ -33,8 +42,7 @@ spec:
           seccompProfile:
             type: "RuntimeDefault"
         ports:
-        - containerPort: 5432
+        - containerPort: 8080
         volumeMounts:
-        - mountPath: /pg
-          subPath: data
-          name: neuralseek-pg-vol
+        - mountPath: /neuralseek/notes:z
+          name: neuralseek-app-vol
